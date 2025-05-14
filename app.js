@@ -7,7 +7,7 @@ const userRoutes = require('./src/routes/userroutes');
 const audioRoutes = require('./src/routes/audioroutes');
 
 const app = express();
-
+app.disable('x-powered-by');
 app.use(cors());
 app.use(express.json());
 
