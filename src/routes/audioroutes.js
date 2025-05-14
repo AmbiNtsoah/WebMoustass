@@ -7,7 +7,13 @@
  const { connexion } = require('../../db/mysql'); // Assurez-vous d'importer connexion
  const { decryptAudio } = require('../services/audioservice');
 
- const upload = multer({ dest: 'uploads/tmp/' });
+const upload = multer({
+  dest: 'uploads/tmp/',
+  limits: {
+    fileSize: 5 * 1024 * 1024 // 5 MB
+  }
+});
+
 
  // Route pour afficher tous les messages
  router.get('/messages', async (req, res) => {
