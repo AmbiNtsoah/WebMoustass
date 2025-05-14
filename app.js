@@ -4,6 +4,7 @@ const path = require('path');
 const authRoutes = require('./src/routes/authRoutes');
 const { connectWithRetry } = require('./db/mysql'); // Import de la fonction de connexion
 const userRoutes = require('./src/routes/userroutes');
+const audioRoutes = require('./src/routes/audioroutes');
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.get('/', (req, res) => {
 });
 
 // 🔽 Tes routes API
+
+app.use('/', audioRoutes);
 app.use('/api', authRoutes);
 app.use('/users', userRoutes); 
 
