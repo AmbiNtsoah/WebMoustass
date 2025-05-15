@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
 
   try {
     const user = await User.findByEmail(username);
-    if (!user || user.password !== hashed) {
+    if (!user || user.password_hash !== hashed) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     res.status(200).json({ username: user.username });

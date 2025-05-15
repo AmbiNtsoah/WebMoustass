@@ -60,7 +60,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const data = await res.json();
   if (res.ok) {
     localStorage.setItem("username", data.username);
-    window.location.href = "profile.html";
+    window.location.href = "enregistrement.html";
   } else {
     alert(data.message);
   }
