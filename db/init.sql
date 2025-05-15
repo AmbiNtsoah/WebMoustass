@@ -15,5 +15,7 @@ CREATE TABLE IF NOT EXISTS messages (
     encrypted_data LONGBLOB,
     sha256_hash VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    aes_key text,
+    aes_iv text,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

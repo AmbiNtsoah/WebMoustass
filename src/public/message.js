@@ -25,7 +25,7 @@ function logout() {
       // Supprimer les données utilisateur (selon votre logique d'authentification)
       localStorage.removeItem("username");
       alert("Déconnexion ...");
-      window.location.href = "/"; // Rediriger vers la page de connexion
+      window.location.href = "login.html"; // Rediriger vers la page de connexion
     }
 
 

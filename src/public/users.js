@@ -1,3 +1,25 @@
+document.getElementById("avatarBtn").addEventListener("click", () => {
+  const menu = document.getElementById("dropdownMenu");
+  menu.classList.toggle("hidden");
+});
+// Cacher le menu si on clique ailleurs
+document.addEventListener("click", (e) => {
+  const menu = document.getElementById("dropdownMenu");
+  const button = document.getElementById("avatarBtn");
+
+  if (!menu.contains(e.target) && !button.contains(e.target)) {
+    menu.classList.add("hidden");
+  }
+});
+
+// Fonction de déconnexion
+function logout() {
+      // Supprimer les données utilisateur (selon votre logique d'authentification)
+      localStorage.removeItem("username");
+      alert("Déconnexion ...");
+      window.location.href = "login.html"; // Rediriger vers la page de connexion
+    }
+
 document.addEventListener("DOMContentLoaded", () => {
   fetch("/users")
     .then(response => {
