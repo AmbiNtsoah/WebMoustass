@@ -4,7 +4,7 @@
  const crypto = require('crypto');
  const fs = require('fs');
  const path = require('path');
- const { connexion } = require('../../db/mysql'); // Assurez-vous d'importer connexion
+ const connexion = require('../../db/mysql'); // Assurez-vous d'importer connexion
  const { decryptAudio } = require('../services/audioservice');
 
 const upload = multer({

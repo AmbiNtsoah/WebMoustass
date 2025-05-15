@@ -20,7 +20,6 @@ app.get('/', (req, res) => {
 });
 
 // 🔽 Tes routes API
-
 app.use('/', audioRoutes);
 app.use('/api', authRoutes);
 app.use('/users', userRoutes); 

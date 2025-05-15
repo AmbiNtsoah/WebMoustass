@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { connexion } = require('../../db/mysql');
+const connexion = require('../../db/mysql');
 
 // 🔽 GET - Récupérer tous les utilisateurs
 router.get('/', async (req, res) => {
