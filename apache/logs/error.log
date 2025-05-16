@@ -656,3 +656,5 @@
 [Fri May 16 05:42:06.271520 2025] [unixd:alert] [pid 9:tid 9] AH02155: getpwuid: couldn't determine user name from uid 4294967295, you probably need to modify the User directive
 [Fri May 16 05:42:06.271162 2025] [unixd:alert] [pid 8:tid 8] AH02155: getpwuid: couldn't determine user name from uid 4294967295, you probably need to modify the User directive
 [Fri May 16 05:42:06.271914 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'
+[Fri May 16 06:15:41.950586 2025] [ssl:warn] [pid 1:tid 1] AH01906: moustassweb.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri May 16 06:15:41.951473 2025] [ssl:warn] [pid 1:tid 1] AH01909: moustassweb.com:443:0 server certificate does NOT include an ID which matches the server name
