@@ -20,8 +20,8 @@ app.get('/', (req, res) => {
 });
 
 // 🔽 Tes routes API
-app.use('/', audioRoutes);
-app.use('/api', authRoutes);
+app.use('/audio', audioRoutes);
+app.use('/auth', authRoutes);
 app.use('/users', userRoutes); 
 
 app.listen(3000, () =>{
