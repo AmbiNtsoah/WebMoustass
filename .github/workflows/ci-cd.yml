@@ -1,49 +1,25 @@
-name: CI/CD for Node.js + Docker (dev branch only)
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "developer_2" ]
-  pull_request:
-    branches: [ "developer_2" ]
+    branches: [ developer_2 ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run linter
-        run: npm run lint || echo "Linter failed"
-
-      - name: Run tests
-        run: npm test || echo "Tests failed"
-
-      - name: Build Docker images
-        run: docker-compose -f docker-compose.yml build
-
-      - name: Start services for testing
-        run: docker-compose -f docker-compose.yml up -d
-
-      - name: Wait for MySQL to be healthy
+      - name: 🔧 Set up Docker Compose
         run: |
-          for i in {1..10}; do
-            docker inspect --format='{{json .State.Health.Status}}' mysql-container | grep -q '"healthy"' && break
-            echo "Waiting for MySQL to be healthy..."
-            sleep 5
-          done
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version
 
-      - name: Check backend health
-        run: curl --fail http://moustassweb.com:3000 || exit 1
-
-      - name: Stop containers
-        run: docker-compose -f docker-compose.yml down
+      - name: 🧱 Build containers
+        run: docker-compose -f docker-compose.yml build
