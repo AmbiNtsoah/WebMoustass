@@ -30,7 +30,7 @@ function logout() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/messages')
+  fetch('/audio/messages')
     .then(response => {
       if (!response.ok) {
         throw new Error("Erreur lors du chargement des messages");
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageId = message.id; // Récupérer l'ID du message
 
         // Créer l'URL du fichier audio
-        const audioUrl = `/get-audio/${messageId}`;
+        const audioUrl = `/audio/get-audio/${messageId}`;
 
         // Récupérer le modal et le lecteur audio
         const modal = document.getElementById('audioModal');
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteButton.className = 'delete-btn';
         deleteButton.onclick = () => {
         if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
-            fetch(`/delete-message/${message.id}`, { method: 'DELETE' })
+            fetch(`/audio/delete-message/${message.id}`, { method: 'DELETE' })
             .then(response => response.json())
             .then(() => location.reload())
             .catch(err => alert('Erreur lors de la suppression'));

@@ -30,7 +30,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
 
   if (password !== confirmPassword) return alert("Passwords do not match");
 
-  const res = await fetch("http://localhost:3000/api/signup", {
+  const res = await fetch("/auth/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })
@@ -51,7 +51,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const username = inputs[0].value;
   const password = inputs[1].value;
 
-  const res = await fetch("http://localhost:3000/api/login", {
+  const res = await fetch("/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })

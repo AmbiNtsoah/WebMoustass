@@ -48,7 +48,7 @@ document.getElementById("startBtn").onclick = async () => {
         formData.append('audio', audioBlob, 'recording.webm');
         formData.append('userId', 1); // à adapter
 
-        const response = await fetch('http://localhost:3000/upload-audio', {
+        const response = await fetch('/audio/upload-audio', {
           method: 'POST',
           body: formData
         });
@@ -86,7 +86,7 @@ document.getElementById("playBtn").onclick = async () => {
   const decryptKey = document.getElementById("decryptKey").value;
   if (lastRecordingId && decryptKey) {
     const audioPlayer = document.getElementById("audioPlayer");
-    const response = await fetch(`http://localhost:3000/get-audio/${lastRecordingId}?key=${decryptKey}`);
+    const response = await fetch(`/audio/get-audio/${lastRecordingId}?key=${decryptKey}`);
     if (response.ok) {
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
