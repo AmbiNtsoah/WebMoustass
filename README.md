@@ -38,3 +38,11 @@ Ce projet vise à fournir une plateforme simple et sécurisée permettant aux ut
    ```bash
    git clone https://github.com/AmbiNtsoah/WebMoustass.git
    cd WebMoustass
+
+2. **Installer les dépedances javascripts**
+   ```bash
+   npm install
+
+3. **Pour lancer Docker**
+   ```bash
+   docker-compose up --build
