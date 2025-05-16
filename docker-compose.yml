@@ -1,0 +1,62 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: missie
+    ports:
+      - "4306:3306"
+    networks:
+      - backend-net
+    volumes:
+      - ./missie.sql:/docker-entrypoint-initdb.d/missie.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile.backend
+    container_name: backend-container
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: missie
+    networks:
+      - backend-net
+
+  apache:
+    image: httpd:2.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: apache-container
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./src/public:/usr/local/apache2/htdocs
+      - ./apache.conf:/usr/local/apache2/conf/httpd.conf
+      - ./ssl.conf:/usr/local/apache2/conf/ssl.conf
+      - ./ssl/server.crt:/usr/local/apache2/conf/server.crt
+      - ./ssl/server.key:/usr/local/apache2/conf/server.key
+      - ./apache/logs:/usr/local/apache2/logs
+      - ./apache/cache:/usr/local/apache2/cache
+    depends_on:
+      - backend
+    networks:
+      - backend-net
+
+
+networks:
+  backend-net:

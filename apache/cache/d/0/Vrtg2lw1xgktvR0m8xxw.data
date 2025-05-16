@@ -118,5 +118,5 @@ document.addEventListener("click", (e) => {
 function logout() {
   // log out logic here
   alert("Déconnexion...");
- window.location.href = 'login.html';
+  // Par exemple : window.location.href = 'login.html';
 }

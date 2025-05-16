@@ -1,0 +1,19 @@
+FROM node:18
+
+# Crée un répertoire de travail dans le conteneur
+WORKDIR /backend
+
+# Copie les fichiers package.json et package-lock.json
+COPY package*.json ./
+
+# Installation des dépendances
+RUN npm install
+
+# Copie tout le contenu du dossier backend dans /app
+COPY . .
+
+# Définir la variable d'environnement du port
+ENV PORT=3000
+
+# Commande pour lancer ton app
+CMD ["node", "app.js"]
